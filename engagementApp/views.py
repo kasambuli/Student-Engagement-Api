@@ -12,8 +12,8 @@ from django.shortcuts import render
 # from rest_framework import mixins
 from rest_framework import generics
 from .models import Articles
-from .serializer import ArticleSerializer
-
+from .serializer import ArticleSerializer, UserSerializer
+from django.contrib.auth.models import User
 
  #this is the one for getting all the articles. So idealy, we get the objects from the model class then serialize them and return as Json data 
 
@@ -32,4 +32,10 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Articles.objects.all()
     serializer_class = ArticleSerializer
 
-    
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
