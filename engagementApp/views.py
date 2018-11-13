@@ -14,7 +14,8 @@ from rest_framework import generics
 from .models import Articles
 from .serializer import ArticleSerializer, UserSerializer
 from django.contrib.auth.models import User
-
+from rest_framework import permissions
+from .permissions import IsOwnerOrReadOnly
  #this is the one for getting all the articles. So idealy, we get the objects from the model class then serialize them and return as Json data 
 
 class ArticleList(generics.ListCreateAPIView):
@@ -23,7 +24,10 @@ class ArticleList(generics.ListCreateAPIView):
     """
     queryset = Articles.objects.all()
     serializer_class = ArticleSerializer
-   
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -31,7 +35,7 @@ class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Articles.objects.all()
     serializer_class = ArticleSerializer
-
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly, )
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
