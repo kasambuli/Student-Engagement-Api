@@ -13,7 +13,7 @@ class Articles(models.Model):
     author = models.CharField(max_length=40)
     owner = models.ForeignKey(
         'auth.User', related_name='articles', on_delete=models.CASCADE, null=True)
-    highlighted = models.TextField(null = True)
+    # highlighted = models.TextField(null = True)
      
     # def save(self, *args, **kwargs):
     #     """

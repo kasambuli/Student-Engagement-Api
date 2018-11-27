@@ -3,3 +3,4 @@ studentEngagement/__pycache__/
 .vscode/
 engagementApp/__pycache__/
 engagementApp/migrations/__pycache__/
+.env
