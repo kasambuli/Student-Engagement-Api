@@ -35,6 +35,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 INSTALLED_APPS = [
     'engagementApp',
+    'favourites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
