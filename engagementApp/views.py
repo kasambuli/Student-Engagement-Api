@@ -27,7 +27,8 @@ from rest_framework import viewsets
 def api_root(request, format=None):
     return Response({
         'users':reverse('user-list', request=request, format=format),
-        'articles': reverse('article-list', request=request, format=format)
+        'articles': reverse('article-list', request=request, format=format),
+        'favourites': reverse('favourites-list', request=request, format=format)
     })
 
 
