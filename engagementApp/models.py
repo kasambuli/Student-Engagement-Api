@@ -7,17 +7,19 @@ from django.db import models
 # Create your models here.
 class Articles(models.Model):
     title = models.CharField(max_length=40)
-    Content = models.TextField()
-    # image = models.ImageField()
+    content = models.TextField()
+    image = models.ImageField(
+        upload_to='photos', null=True, max_length=255)
     category = models.CharField(max_length=40)
     author = models.CharField(max_length=40)
+    liked = models.BooleanField(default=True)
     owner = models.ForeignKey(
         'auth.User', related_name='articles', on_delete=models.CASCADE, null=True)
     # highlighted = models.TextField(null = True)
      
     # def save(self, *args, **kwargs):
     #     """
-    #     Use the `pygments` library to create a highlighted HTML
+    #     Use the `pygments` library to create a highlighted HTMLz
     #     representation of the code snippet.
     #     """
     #     # lexer= get_lexer_by_name(self.language)
