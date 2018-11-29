@@ -4,3 +4,9 @@ from django.db import models
 class Favourite(models.Model):
     article = models.ForeignKey('engagementApp.Articles', related_name='favourites')
     user_uuid = models.TextField()
+
+
+class Comments(models.Model):
+    comment = models.ForeignKey(
+        'engagementApp.Articles', related_name='comments')
+    user_uuid = models.TextField()
