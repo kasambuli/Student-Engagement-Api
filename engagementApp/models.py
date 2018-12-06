@@ -8,8 +8,7 @@ from django.db import models
 class Articles(models.Model):
     title = models.CharField(max_length=40)
     content = models.TextField()
-    image = models.ImageField(
-        upload_to='photos', null=True, max_length=255)
+    image = models.CharField(max_length=40, null=True)
     category = models.CharField(max_length=40)
     author = models.CharField(max_length=40)
     liked = models.BooleanField(default=True)
