@@ -14,8 +14,12 @@ class Articles(models.Model):
     liked = models.BooleanField(default=True)
     owner = models.ForeignKey(
         'auth.User', related_name='articles', on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
     # highlighted = models.TextField(null = True)
-     
+
     # def save(self, *args, **kwargs):
     #     """
     #     Use the `pygments` library to create a highlighted HTMLz
@@ -27,5 +31,3 @@ class Articles(models.Model):
     #     formatter = HtmlFormatter(style=self.style, full=True, **options)
     #     self.highlighted = highlight(self.code, lexer, formatter)
     #     super(Articles, self).save(*args, **kwargs)
-
-    
