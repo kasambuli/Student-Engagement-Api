@@ -5,6 +5,9 @@ class Favourite(models.Model):
     article = models.ForeignKey('engagementApp.Articles', related_name='favourites')
     user_uuid = models.TextField()
 
+    class Meta:
+        unique_together = (('article', 'user_uuid'),)
+
 
 class Comments(models.Model):
     comment = models.ForeignKey(
